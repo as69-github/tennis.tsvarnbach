@@ -1,0 +1,12 @@
+---
+layout: base.njk
+---
+<a class="zurueck" href="/neuigkeiten/">&larr; Zurück zu allen Neuigkeiten</a>
+<h1>{{ titel }}</h1>
+<p class="karte-datum">{{ datum | datumDeutsch }}</p>
+
+{% if titelbild %}
+<img src="{{ titelbild }}" alt="{{ titel }}" style="border-radius:8px;margin:1rem 0;" />
+{% endif %}
+
+{{ content | safe }}

@@ -1,0 +1,19 @@
+<ul class="termin-liste">
+  {% for termin in termine %}
+  <li class="termin">
+    <div class="termin-datum">
+      <span class="tag">{{ termin.data.datum | tag }}</span>
+      <span class="monat">{{ termin.data.datum | monatKurz }}</span>
+    </div>
+    <div class="termin-info">
+      <h3>{{ termin.data.titel }}</h3>
+      <p class="termin-meta">
+        {{ termin.data.datum | datumDeutsch }}
+        {% if termin.data.uhrzeit %} · {{ termin.data.uhrzeit }} Uhr{% endif %}
+        {% if termin.data.ort %} · {{ termin.data.ort }}{% endif %}
+      </p>
+      {% if termin.data.beschreibung %}<p>{{ termin.data.beschreibung }}</p>{% endif %}
+    </div>
+  </li>
+  {% endfor %}
+</ul>

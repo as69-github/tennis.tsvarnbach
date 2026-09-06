@@ -1,0 +1,4 @@
+{
+  "layout": "turnier.njk",
+  "permalink": "/turniere/{{ page.fileSlug }}/"
+}

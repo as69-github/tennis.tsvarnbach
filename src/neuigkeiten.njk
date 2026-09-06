@@ -1,0 +1,26 @@
+---
+layout: base.njk
+title: Neuigkeiten
+permalink: /neuigkeiten/
+---
+<h1>Neuigkeiten</h1>
+<p>Aktuelles aus dem Vereinsleben.</p>
+
+{% set news = collections.neuigkeiten %}
+{% if news.length %}
+<div class="karten">
+  {% for beitrag in news %}
+  <a class="karte" href="{{ beitrag.url }}">
+    {% if beitrag.data.titelbild %}
+    <img src="{{ beitrag.data.titelbild }}" alt="{{ beitrag.data.titel }}" />
+    {% endif %}
+    <div class="karte-body">
+      <h3>{{ beitrag.data.titel }}</h3>
+      <span class="karte-datum">{{ beitrag.data.datum | datumDeutsch }}</span>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p>Es wurden noch keine Neuigkeiten veröffentlicht.</p>
+{% endif %}

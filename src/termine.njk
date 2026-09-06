@@ -1,0 +1,14 @@
+---
+layout: base.njk
+title: Termine
+permalink: /termine/
+---
+<h1>Termine</h1>
+<p>Alle anstehenden Veranstaltungen und Termine des Vereins.</p>
+
+{% set termine = collections.kommendeTermine %}
+{% if termine.length %}
+  {% include "termin-liste.njk" %}
+{% else %}
+  <p>Aktuell sind keine kommenden Termine eingetragen.</p>
+{% endif %}

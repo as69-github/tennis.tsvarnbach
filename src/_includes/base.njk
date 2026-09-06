@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% if title %}{{ title }} – {% endif %}{{ verein.name }}</title>
+    <meta name="description" content="{{ description or verein.slogan }}" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="icon" href="/assets/img/logo.jpg" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">
+        <img src="/assets/img/logo.jpg" alt="Logo {{ verein.name }}" class="brand-logo" />
+        <span class="brand-text">
+          <span class="brand-name">{{ verein.kurzname }}</span>
+          <span class="brand-sub">1951 e.V.</span>
+        </span>
+      </a>
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+      <label for="nav-toggle" class="nav-toggle-label" aria-label="Menü öffnen">
+        <span></span><span></span><span></span>
+      </label>
+      <nav class="site-nav">
+        <a href="/">Start</a>
+        <a href="/termine/">Termine</a>
+        <a href="/turniere/">Turniere</a>
+        <a href="/neuigkeiten/">Neuigkeiten</a>
+        <a href="/ueber-uns/">Über uns</a>
+      </nav>
+    </header>
+
+    <main class="site-main">
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <p>&copy; {{ verein.jahr }}–2026 {{ verein.name }}</p>
+        <p><a href="/ueber-uns/">Kontakt &amp; Impressum</a></p>
+      </div>
+    </footer>
+  </body>
+</html>

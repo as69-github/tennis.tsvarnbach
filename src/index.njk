@@ -1,0 +1,24 @@
+---
+layout: base.njk
+title: Startseite
+---
+<section class="hero">
+  <img src="/assets/img/logo.jpg" alt="Logo {{ verein.name }}" />
+  <h1>{{ verein.name }}</h1>
+  <p>{{ verein.slogan }}</p>
+</section>
+
+<h2>Herzlich willkommen</h2>
+<p>
+  Willkommen auf der Webseite des {{ verein.name }}. Hier findet ihr aktuelle
+  Termine, Neuigkeiten aus dem Vereinsleben und Fotos von unseren Turnieren.
+</p>
+
+<h2 style="margin-top:2.5rem;">Nächste Termine</h2>
+{% set termine = collections.kommendeTermine | limit(3) %}
+{% if termine.length %}
+  {% include "termin-liste.njk" %}
+  <a class="btn" href="/termine/">Alle Termine ansehen</a>
+{% else %}
+  <p>Aktuell sind keine Termine eingetragen.</p>
+{% endif %}

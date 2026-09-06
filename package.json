@@ -1,0 +1,13 @@
+{
+  "name": "tsv-arnbach-webseite",
+  "version": "1.0.0",
+  "description": "Vereins-Webseite TSV Arnbach 1951 e.V.",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0"
+  }
+}

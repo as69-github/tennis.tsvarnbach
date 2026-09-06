@@ -1,0 +1,335 @@
+:root {
+  --schwarz: #111111;
+  --weiss: #ffffff;
+  --grau: #f4f4f4;
+  --grau-mittel: #666666;
+  --grau-linie: #e0e0e0;
+  --max: 960px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--schwarz);
+  background: var(--weiss);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--schwarz);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- Header / Navigation ---------- */
+.site-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.75rem 1.5rem;
+  background: var(--schwarz);
+  color: var(--weiss);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  color: var(--weiss);
+  margin-right: auto;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  background: var(--weiss);
+  border-radius: 4px;
+  padding: 2px;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.brand-name {
+  font-weight: 700;
+  font-size: 1.15rem;
+  letter-spacing: 0.5px;
+}
+
+.brand-sub {
+  font-size: 0.75rem;
+  color: #bbbbbb;
+}
+
+.site-nav {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.site-nav a {
+  color: var(--weiss);
+  text-decoration: none;
+  padding: 0.5rem 0.85rem;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.site-nav a:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* Mobiles Menü */
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.nav-toggle-label span {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: var(--weiss);
+  border-radius: 2px;
+}
+
+@media (max-width: 680px) {
+  .nav-toggle-label {
+    display: flex;
+  }
+  .site-nav {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+  }
+  .nav-toggle:checked ~ .site-nav {
+    display: flex;
+  }
+}
+
+/* ---------- Layout ---------- */
+.site-main {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: 3px solid var(--schwarz);
+  padding-bottom: 0.4rem;
+  display: inline-block;
+}
+
+/* ---------- Hero / Startseite ---------- */
+.hero {
+  background: var(--schwarz);
+  color: var(--weiss);
+  text-align: center;
+  padding: 3rem 1.5rem;
+}
+
+.hero img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  background: var(--weiss);
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.hero h1 {
+  border: none;
+  color: var(--weiss);
+  margin: 1rem 0 0.5rem;
+}
+
+.hero p {
+  color: #cccccc;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* ---------- Termine ---------- */
+.termin-liste {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+}
+
+.termin {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--grau-linie);
+}
+
+.termin-datum {
+  flex: 0 0 68px;
+  text-align: center;
+  background: var(--schwarz);
+  color: var(--weiss);
+  border-radius: 6px;
+  padding: 0.5rem 0.25rem;
+  line-height: 1.2;
+}
+
+.termin-datum .tag {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.termin-datum .monat {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.termin-info h3 {
+  margin: 0 0 0.25rem;
+}
+
+.termin-meta {
+  color: var(--grau-mittel);
+  font-size: 0.9rem;
+  margin: 0 0 0.35rem;
+}
+
+/* ---------- Karten (Turniere / News) ---------- */
+.karten {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.karte {
+  border: 1px solid var(--grau-linie);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: var(--weiss);
+}
+
+.karte img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+.karte-body {
+  padding: 1rem;
+}
+
+.karte-body h3 {
+  margin: 0 0 0.4rem;
+}
+
+.karte-datum {
+  color: var(--grau-mittel);
+  font-size: 0.85rem;
+}
+
+/* ---------- Fotogalerie ---------- */
+.galerie {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.galerie img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+/* ---------- Buttons / diverses ---------- */
+.btn {
+  display: inline-block;
+  background: var(--schwarz);
+  color: var(--weiss);
+  text-decoration: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 600;
+  margin-top: 1rem;
+}
+
+.btn:hover {
+  background: #333;
+}
+
+.hinweis {
+  background: var(--grau);
+  border-left: 4px solid var(--schwarz);
+  padding: 1rem 1.25rem;
+  border-radius: 0 6px 6px 0;
+  margin: 1.5rem 0;
+}
+
+.zurueck {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  background: var(--schwarz);
+  color: #cccccc;
+  margin-top: 3rem;
+}
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.footer-inner a {
+  color: var(--weiss);
+}

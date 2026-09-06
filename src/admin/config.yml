@@ -1,0 +1,75 @@
+# Decap CMS Konfiguration
+# ------------------------------------------------------------------
+# backend: Wie werden Aenderungen gespeichert und Redakteure eingeloggt.
+# Standard ist GitHub. Beim Deployment richten wir den Login gemeinsam ein.
+# Fuer eine Anmeldung per E-Mail/Passwort (ohne GitHub-Konto) stellen wir
+# spaeter auf einen Git-Gateway/Identity-Dienst um.
+backend:
+  name: github
+  repo: as69-github/tennis.tsvarnbach
+  branch: main
+  # OAuth-Login laeuft ueber die mitgelieferte Cloudflare Pages Function
+  # (siehe Ordner /functions/api). So ist kein Netlify Identity noetig.
+  base_url: https://tennis-tsvarnbach.pages.dev
+  auth_endpoint: /api/auth
+
+# Ordner fuer hochgeladene Bilder
+media_folder: "src/uploads"
+public_folder: "/uploads"
+
+# Sprache der Oberflaeche
+locale: "de"
+
+collections:
+  # ---------------- Termine ----------------
+  - name: "termine"
+    label: "Termine"
+    label_singular: "Termin"
+    folder: "src/termine"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{datum}} – {{titel}}"
+    sortable_fields: ["datum", "titel"]
+    fields:
+      - { label: "Titel", name: "titel", widget: "string" }
+      - { label: "Datum", name: "datum", widget: "datetime", date_format: "DD.MM.YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Uhrzeit", name: "uhrzeit", widget: "string", required: false, hint: "z. B. 18:00" }
+      - { label: "Ort", name: "ort", widget: "string", required: false }
+      - { label: "Beschreibung", name: "beschreibung", widget: "text", required: false }
+
+  # ---------------- Neuigkeiten ----------------
+  - name: "neuigkeiten"
+    label: "Neuigkeiten"
+    label_singular: "Neuigkeit"
+    folder: "src/neuigkeiten"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{datum}} – {{titel}}"
+    sortable_fields: ["datum", "titel"]
+    fields:
+      - { label: "Titel", name: "titel", widget: "string" }
+      - { label: "Datum", name: "datum", widget: "datetime", date_format: "DD.MM.YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Titelbild", name: "titelbild", widget: "image", required: false }
+      - { label: "Inhalt", name: "body", widget: "markdown" }
+
+  # ---------------- Turniere / Fotogalerien ----------------
+  - name: "turniere"
+    label: "Turniere & Fotos"
+    label_singular: "Turnier"
+    folder: "src/turniere"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    summary: "{{datum}} – {{titel}}"
+    sortable_fields: ["datum", "titel"]
+    fields:
+      - { label: "Titel", name: "titel", widget: "string" }
+      - { label: "Datum", name: "datum", widget: "datetime", date_format: "DD.MM.YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Titelbild", name: "titelbild", widget: "image", required: false }
+      - { label: "Beschreibung", name: "body", widget: "markdown", required: false }
+      - label: "Fotos"
+        name: "fotos"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Bild", name: "bild", widget: "image" }
+          - { label: "Bildunterschrift", name: "text", widget: "string", required: false }

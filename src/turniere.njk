@@ -1,0 +1,26 @@
+---
+layout: base.njk
+title: Turniere
+permalink: /turniere/
+---
+<h1>Turniere &amp; Fotos</h1>
+<p>Rückblicke und Fotogalerien von unseren Turnieren und Veranstaltungen.</p>
+
+{% set turniere = collections.turniere %}
+{% if turniere.length %}
+<div class="karten">
+  {% for turnier in turniere %}
+  <a class="karte" href="{{ turnier.url }}">
+    {% if turnier.data.titelbild %}
+    <img src="{{ turnier.data.titelbild }}" alt="{{ turnier.data.titel }}" />
+    {% endif %}
+    <div class="karte-body">
+      <h3>{{ turnier.data.titel }}</h3>
+      <span class="karte-datum">{{ turnier.data.datum | datumDeutsch }}</span>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p>Es wurden noch keine Turniere veröffentlicht.</p>
+{% endif %}

@@ -1,0 +1,18 @@
+---
+layout: base.njk
+---
+<a class="zurueck" href="/turniere/">&larr; Zurück zu allen Turnieren</a>
+<h1>{{ titel }}</h1>
+<p class="karte-datum">{{ datum | datumDeutsch }}</p>
+
+{{ content | safe }}
+
+{% if fotos and fotos.length %}
+<div class="galerie">
+  {% for foto in fotos %}
+  <a href="{{ foto.bild }}" target="_blank" rel="noopener">
+    <img src="{{ foto.bild }}" alt="{{ foto.text or titel }}" loading="lazy" />
+  </a>
+  {% endfor %}
+</div>
+{% endif %}
