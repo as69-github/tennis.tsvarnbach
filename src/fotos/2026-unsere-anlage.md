@@ -5,6 +5,7 @@ titelbild: /assets/img/tennisanlage.jpg
 fotos:
   - bild: /assets/img/tennisanlage.jpg
     text: Blick auf die Plätze und das Vereinsheim
+  - bild: /uploads/tennisanlage1.jpg
+  - bild: /uploads/tennisanlage2.jpg
 ---
-Ein paar Eindrücke von unserer Anlage in Arnbach. Weitere Fotos aus dem
-Vereinsleben folgen – Contributor können hier jederzeit neue Alben anlegen.
+Ein paar Eindrücke von unserer Anlage in Arnbach.
