@@ -73,3 +73,25 @@ collections:
         fields:
           - { label: "Bild", name: "bild", widget: "image" }
           - { label: "Bildunterschrift", name: "text", widget: "string", required: false }
+
+  # ---------------- Fotos / Fotoalben ----------------
+  - name: "fotos"
+    label: "Fotos"
+    label_singular: "Fotoalbum"
+    folder: "src/fotos"
+    create: true
+    slug: "{{year}}-{{slug}}"
+    summary: "{{datum}} – {{titel}}"
+    sortable_fields: ["datum", "titel"]
+    fields:
+      - { label: "Titel", name: "titel", widget: "string" }
+      - { label: "Datum", name: "datum", widget: "datetime", date_format: "DD.MM.YYYY", time_format: false, format: "YYYY-MM-DD" }
+      - { label: "Titelbild", name: "titelbild", widget: "image", required: false }
+      - { label: "Beschreibung", name: "body", widget: "markdown", required: false }
+      - label: "Fotos"
+        name: "fotos"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Bild", name: "bild", widget: "image" }
+          - { label: "Bildunterschrift", name: "text", widget: "string", required: false }

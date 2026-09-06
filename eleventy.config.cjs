@@ -73,6 +73,13 @@ module.exports = function (eleventyConfig) {
       .sort((a, b) => new Date(b.data.datum) - new Date(a.data.datum));
   });
 
+  // Foto-Alben, neueste zuerst
+  eleventyConfig.addCollection("fotoalben", function (collectionApi) {
+    return collectionApi
+      .getFilteredByGlob("src/fotos/*.md")
+      .sort((a, b) => new Date(b.data.datum) - new Date(a.data.datum));
+  });
+
   return {
     dir: {
       input: "src",

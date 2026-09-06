@@ -1,0 +1,28 @@
+---
+layout: base.njk
+title: Fotos
+permalink: /fotos/
+---
+<h1>Fotos</h1>
+<p>Impressionen und Fotoalben aus dem Vereinsleben.</p>
+
+{% set alben = collections.fotoalben %}
+{% if alben.length %}
+<div class="karten">
+  {% for album in alben %}
+  <a class="karte" href="{{ album.url }}">
+    {% if album.data.titelbild %}
+    <img src="{{ album.data.titelbild }}" alt="{{ album.data.titel }}" />
+    {% endif %}
+    <div class="karte-body">
+      <h3>{{ album.data.titel }}</h3>
+      {% if album.data.datum %}
+      <span class="karte-datum">{{ album.data.datum | datumDeutsch }}</span>
+      {% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<p>Es wurden noch keine Fotoalben veröffentlicht.</p>
+{% endif %}
