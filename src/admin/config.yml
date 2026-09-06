@@ -21,6 +21,19 @@ public_folder: "/uploads"
 locale: "de"
 
 collections:
+  # ---------------- Platzbuchung (einzelne Seite) ----------------
+  - name: "seiten"
+    label: "Seiten"
+    files:
+      - name: "platzbuchung"
+        label: "Platzbuchung (Anleitung)"
+        file: "src/platzbuchung.md"
+        fields:
+          - { label: "Titel", name: "title", widget: "string" }
+          - { label: "Anleitung", name: "body", widget: "markdown" }
+          - { label: "Layout", name: "layout", widget: "hidden", default: "base.njk" }
+          - { label: "Permalink", name: "permalink", widget: "hidden", default: "/platzbuchung/" }
+
   # ---------------- Termine ----------------
   - name: "termine"
     label: "Termine"
