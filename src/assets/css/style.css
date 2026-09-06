@@ -163,12 +163,12 @@ h1 {
 }
 
 .hero img {
-  width: 120px;
-  height: 120px;
-  object-fit: contain;
-  background: var(--weiss);
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
   border-radius: 8px;
-  padding: 6px;
 }
 
 .hero h1 {
