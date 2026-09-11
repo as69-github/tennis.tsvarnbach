@@ -44,8 +44,9 @@ Programmierkenntnisse.
 
 ## Systemarchitektur
 
-Das Zusammenspiel der Komponenten zeigt das Diagramm
-[`architektur.drawio`](./architektur.drawio).
+![Systemarchitektur](./architektur.svg)
+
+*Bearbeitbare Quelle: [`architektur.drawio`](./architektur.drawio)*
 
 Kurz zusammengefasst:
 
@@ -117,8 +118,9 @@ GitHub-API: Inhalte werden als Commits im Branch `main` gespeichert.
 
 ## OAuth-Authentisierung der Content-Verwalter
 
-Den vollständigen Ablauf zeigt das Diagramm
-[`oauth-flow.drawio`](./oauth-flow.drawio).
+![OAuth-Login-Ablauf](./oauth-flow.svg)
+
+*Bearbeitbare Quelle: [`oauth-flow.drawio`](./oauth-flow.drawio)*
 
 Warum dieser Weg? Decap CMS mit GitHub-Backend benötigt einen Vermittler
 (OAuth-Proxy), weil GitHub den Login nicht direkt aus einer statischen Seite
@@ -143,7 +145,11 @@ sieht nur das fertige Access-Token. Wer Inhalte speichern können soll, muss als
 
 ## Wie Inhalte veröffentlicht werden
 
-Es gibt zwei Wege, dargestellt in [`content-flow.drawio`](./content-flow.drawio):
+![Veröffentlichungswege für Inhalte](./content-flow.svg)
+
+*Bearbeitbare Quelle: [`content-flow.drawio`](./content-flow.drawio)*
+
+Es gibt zwei Wege:
 
 - **Weg A – Redakteur über das CMS:** Änderungen unter `/admin/` werden vom CMS
   als Commit gespeichert; Bilder landen in `src/uploads/`.
@@ -184,9 +190,20 @@ angepasst werden.
 
 ## Diagramme (DrawIO)
 
-Die folgenden Dateien lassen sich mit [diagrams.net](https://app.diagrams.net/)
-oder der VS-Code-/Kiro-Erweiterung „Draw.io Integration" öffnen und bearbeiten:
+Jedes Diagramm liegt in zwei Formaten vor:
 
-- [`architektur.drawio`](./architektur.drawio) – Gesamtarchitektur des Systems
-- [`oauth-flow.drawio`](./oauth-flow.drawio) – OAuth-Login der Content-Verwalter
-- [`content-flow.drawio`](./content-flow.drawio) – Veröffentlichungswege für Inhalte
+- Eine **`.svg`-Datei** – direkt in dieser Doku eingebettet und in jedem
+  Browser/Markdown-Viewer (inkl. GitHub) darstellbar.
+- Eine **`.drawio`-Datei** – zum Bearbeiten mit
+  [diagrams.net](https://app.diagrams.net/) oder der VS-Code-/Kiro-Erweiterung
+  „Draw.io Integration".
+
+| Diagramm                        | Ansicht (SVG)                          | Bearbeiten (DrawIO)                          |
+| ------------------------------- | -------------------------------------- | -------------------------------------------- |
+| Gesamtarchitektur               | [`architektur.svg`](./architektur.svg) | [`architektur.drawio`](./architektur.drawio) |
+| OAuth-Login der Content-Verwalter | [`oauth-flow.svg`](./oauth-flow.svg) | [`oauth-flow.drawio`](./oauth-flow.drawio)   |
+| Veröffentlichungswege           | [`content-flow.svg`](./content-flow.svg) | [`content-flow.drawio`](./content-flow.drawio) |
+
+> Wird ein `.drawio`-Diagramm geändert, sollte die zugehörige `.svg` neu
+> exportiert werden (in diagrams.net über *Datei → Exportieren als → SVG*),
+> damit die Einbettung in dieser Doku aktuell bleibt.

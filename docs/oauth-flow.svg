@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1150" height="880" viewBox="0 0 1150 880" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1150" height="880" fill="#ffffff"/>
+  <text x="575" y="34" font-size="19" font-weight="bold" text-anchor="middle" fill="#111">OAuth-Login der Content-Verwalter (Decap CMS über GitHub)</text>
+
+  <defs>
+    <marker id="a2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <!-- lifeline heads -->
+  <rect x="55" y="60" width="150" height="52" rx="8" fill="#d5e8d4" stroke="#82b366"/>
+  <text x="130" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#111">Redakteur</text>
+  <text x="130" y="100" font-size="11" text-anchor="middle" fill="#111">(Browser, /admin/)</text>
+
+  <rect x="285" y="60" width="150" height="52" rx="8" fill="#f8cecc" stroke="#b85450"/>
+  <text x="360" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#111">/api/auth</text>
+  <text x="360" y="100" font-size="11" text-anchor="middle" fill="#111">(Pages Function)</text>
+
+  <rect x="515" y="60" width="150" height="52" rx="8" fill="#e1d5e7" stroke="#9673a6"/>
+  <text x="590" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#111">GitHub OAuth</text>
+  <text x="590" y="100" font-size="11" text-anchor="middle" fill="#111">(Login-Server)</text>
+
+  <rect x="745" y="60" width="150" height="52" rx="8" fill="#f8cecc" stroke="#b85450"/>
+  <text x="820" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#111">/api/callback</text>
+  <text x="820" y="100" font-size="11" text-anchor="middle" fill="#111">(Pages Function)</text>
+
+  <rect x="975" y="60" width="150" height="52" rx="8" fill="#e1d5e7" stroke="#9673a6"/>
+  <text x="1050" y="82" font-size="12" font-weight="bold" text-anchor="middle" fill="#111">GitHub API</text>
+  <text x="1050" y="100" font-size="11" text-anchor="middle" fill="#111">(Repo)</text>
+
+  <!-- lifelines -->
+  <line x1="130" y1="112" x2="130" y2="800" stroke="#82b366" stroke-dasharray="4,4"/>
+  <line x1="360" y1="112" x2="360" y2="800" stroke="#b85450" stroke-dasharray="4,4"/>
+  <line x1="590" y1="112" x2="590" y2="800" stroke="#9673a6" stroke-dasharray="4,4"/>
+  <line x1="820" y1="112" x2="820" y2="800" stroke="#b85450" stroke-dasharray="4,4"/>
+  <line x1="1050" y1="112" x2="1050" y2="800" stroke="#9673a6" stroke-dasharray="4,4"/>
+
+  <!-- steps -->
+  <line x1="130" y1="160" x2="358" y2="160" stroke="#444" marker-end="url(#a2)"/>
+  <text x="135" y="153" font-size="11" fill="#111">1. Klick "Login with GitHub" → /api/auth</text>
+
+  <line x1="360" y1="225" x2="588" y2="225" stroke="#444" marker-end="url(#a2)"/>
+  <text x="365" y="205" font-size="11" fill="#111">2. HTTP 302 → github.com/login/oauth/authorize</text>
+  <text x="365" y="219" font-size="10" fill="#555">(client_id, redirect_uri=/api/callback, scope=repo, state)</text>
+
+  <line x1="130" y1="300" x2="588" y2="300" stroke="#444" stroke-dasharray="5,4" marker-end="url(#a2)"/>
+  <text x="180" y="293" font-size="11" fill="#111">3. Redakteur meldet sich an &amp; bestätigt Zugriff</text>
+
+  <line x1="590" y1="370" x2="818" y2="370" stroke="#444" marker-end="url(#a2)"/>
+  <text x="595" y="363" font-size="11" fill="#111">4. Redirect → /api/callback?code=...</text>
+
+  <line x1="820" y1="440" x2="592" y2="440" stroke="#444" marker-end="url(#a2)"/>
+  <text x="600" y="420" font-size="11" fill="#111">5. POST code + client_id + client_secret</text>
+  <text x="600" y="434" font-size="10" fill="#555">an github.com/login/oauth/access_token</text>
+
+  <line x1="590" y1="510" x2="818" y2="510" stroke="#444" stroke-dasharray="5,4" marker-end="url(#a2)"/>
+  <text x="600" y="503" font-size="11" fill="#111">6. Antwort: access_token</text>
+
+  <line x1="820" y1="585" x2="132" y2="585" stroke="#444" marker-end="url(#a2)"/>
+  <text x="180" y="565" font-size="11" fill="#111">7. HTML mit postMessage("authorization:github:success:{token}")</text>
+  <text x="180" y="579" font-size="10" fill="#555">an das CMS-Fenster zurück</text>
+
+  <line x1="130" y1="660" x2="1048" y2="660" stroke="#444" marker-end="url(#a2)"/>
+  <text x="180" y="640" font-size="11" fill="#111">8. CMS nutzt das Token für alle weiteren Aufrufe:</text>
+  <text x="180" y="654" font-size="10" fill="#555">Inhalte lesen &amp; speichern (Commits) via GitHub API</text>
+
+  <!-- note -->
+  <rect x="130" y="700" width="920" height="60" rx="4" fill="#fff2cc" stroke="#d6b656"/>
+  <text x="145" y="724" font-size="11" fill="#111">Wichtig: Das GITHUB_CLIENT_SECRET verlässt nie den Server – es wird nur in der Function /api/callback verwendet.</text>
+  <text x="145" y="744" font-size="11" fill="#111">Der Browser sieht nur das fertige Access-Token.</text>
+</svg>

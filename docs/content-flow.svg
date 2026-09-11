@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="700" viewBox="0 0 1100 700" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1100" height="700" fill="#ffffff"/>
+  <text x="550" y="34" font-size="19" font-weight="bold" text-anchor="middle" fill="#111">Wie Inhalte veröffentlicht werden – zwei Wege</text>
+
+  <defs>
+    <marker id="a3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <!-- Weg A -->
+  <rect x="40" y="70" width="450" height="250" rx="10" fill="#d5e8d4" stroke="#82b366"/>
+  <text x="265" y="94" font-size="14" font-weight="bold" text-anchor="middle" fill="#111">Weg A: Redakteur über das CMS</text>
+  <rect x="65" y="110" width="400" height="48" rx="6" fill="#ffffff" stroke="#82b366"/>
+  <text x="265" y="130" font-size="11" text-anchor="middle" fill="#111">Redakteur öffnet /admin/ und bearbeitet</text>
+  <text x="265" y="147" font-size="11" text-anchor="middle" fill="#111">Termine, Neuigkeiten, Fotos, Platzbuchung</text>
+  <rect x="65" y="178" width="400" height="48" rx="6" fill="#ffffff" stroke="#82b366"/>
+  <text x="265" y="198" font-size="11" text-anchor="middle" fill="#111">Decap CMS erstellt einen Commit im Repo</text>
+  <text x="265" y="215" font-size="11" text-anchor="middle" fill="#111">(über das OAuth-Token)</text>
+  <rect x="65" y="246" width="400" height="48" rx="6" fill="#ffffff" stroke="#82b366"/>
+  <text x="265" y="274" font-size="11" text-anchor="middle" fill="#111">Bilder landen automatisch in src/uploads/</text>
+  <line x1="265" y1="158" x2="265" y2="176" stroke="#444" marker-end="url(#a3)"/>
+  <line x1="265" y1="226" x2="265" y2="244" stroke="#444" marker-end="url(#a3)"/>
+
+  <!-- Weg B -->
+  <rect x="610" y="70" width="450" height="250" rx="10" fill="#dae8fc" stroke="#6c8ebf"/>
+  <text x="835" y="94" font-size="14" font-weight="bold" text-anchor="middle" fill="#111">Weg B: Lokale Entwicklung mit Kiro</text>
+  <rect x="635" y="110" width="400" height="48" rx="6" fill="#ffffff" stroke="#6c8ebf"/>
+  <text x="835" y="130" font-size="11" text-anchor="middle" fill="#111">git pull (automatisch beim Sitzungsstart)</text>
+  <text x="835" y="147" font-size="11" text-anchor="middle" fill="#111">holt CMS-Änderungen der Redakteure</text>
+  <rect x="635" y="178" width="400" height="48" rx="6" fill="#ffffff" stroke="#6c8ebf"/>
+  <text x="835" y="198" font-size="11" text-anchor="middle" fill="#111">Dateien unter src/ bearbeiten (Layout, Seiten, CSS)</text>
+  <text x="835" y="215" font-size="11" text-anchor="middle" fill="#111">lokal bauen mit build.cmd / start.cmd</text>
+  <rect x="635" y="246" width="400" height="48" rx="6" fill="#ffffff" stroke="#6c8ebf"/>
+  <text x="835" y="274" font-size="11" text-anchor="middle" fill="#111">git commit + git push</text>
+  <line x1="835" y1="158" x2="835" y2="176" stroke="#444" marker-end="url(#a3)"/>
+  <line x1="835" y1="226" x2="835" y2="244" stroke="#444" marker-end="url(#a3)"/>
+
+  <!-- Repo -->
+  <rect x="380" y="390" width="340" height="55" rx="8" fill="#e1d5e7" stroke="#9673a6"/>
+  <text x="550" y="423" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">GitHub Repository (Branch main)</text>
+
+  <!-- Build -->
+  <rect x="380" y="490" width="340" height="55" rx="8" fill="#ffe6cc" stroke="#d79b00"/>
+  <text x="550" y="513" font-size="12" text-anchor="middle" fill="#111">Cloudflare Pages: automatischer Build</text>
+  <text x="550" y="531" font-size="12" text-anchor="middle" fill="#111">npx @11ty/eleventy → _site</text>
+
+  <!-- Live -->
+  <rect x="380" y="590" width="340" height="55" rx="8" fill="#d4e1f5" stroke="#6c8ebf"/>
+  <text x="550" y="613" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Live-Website</text>
+  <text x="550" y="632" font-size="12" text-anchor="middle" fill="#111">https://tennis-tsvarnbach.pages.dev/</text>
+
+  <!-- edges to repo -->
+  <path d="M265,294 L265,360 L470,360 L470,388" fill="none" stroke="#444" marker-end="url(#a3)"/>
+  <path d="M835,294 L835,360 L630,360 L630,388" fill="none" stroke="#444" marker-end="url(#a3)"/>
+  <line x1="550" y1="445" x2="550" y2="488" stroke="#444" marker-end="url(#a3)"/>
+  <text x="560" y="472" font-size="10" fill="#333">Push löst Build aus</text>
+  <line x1="550" y1="545" x2="550" y2="588" stroke="#444" marker-end="url(#a3)"/>
+  <text x="560" y="572" font-size="10" fill="#333">veröffentlicht</text>
+</svg>

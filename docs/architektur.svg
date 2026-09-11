@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="720" viewBox="0 0 1100 720" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="1100" height="720" fill="#ffffff"/>
+  <text x="550" y="36" font-size="22" font-weight="bold" text-anchor="middle" fill="#111">TSV Arnbach – Systemarchitektur</text>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#444"/>
+    </marker>
+  </defs>
+
+  <!-- Besucher -->
+  <rect x="40" y="110" width="170" height="70" rx="8" fill="#dae8fc" stroke="#6c8ebf"/>
+  <text x="125" y="140" font-size="13" text-anchor="middle" fill="#111">Website-Besucher</text>
+  <text x="125" y="160" font-size="13" text-anchor="middle" fill="#111">(Browser)</text>
+
+  <!-- Redakteur -->
+  <rect x="40" y="600" width="170" height="70" rx="8" fill="#d5e8d4" stroke="#82b366"/>
+  <text x="125" y="630" font-size="13" text-anchor="middle" fill="#111">Content-Verwalter</text>
+  <text x="125" y="650" font-size="12" text-anchor="middle" fill="#111">(Redakteur / Contributor)</text>
+
+  <!-- Cloudflare Pages container -->
+  <rect x="330" y="95" width="410" height="340" rx="10" fill="#ffe6cc" stroke="#d79b00"/>
+  <text x="535" y="118" font-size="15" font-weight="bold" text-anchor="middle" fill="#111">Cloudflare Pages</text>
+
+  <rect x="355" y="135" width="360" height="55" rx="6" fill="#fff2cc" stroke="#d6b656"/>
+  <text x="535" y="158" font-size="12" text-anchor="middle" fill="#111">Statische Seiten (HTML/CSS/Bilder)</text>
+  <text x="535" y="176" font-size="12" text-anchor="middle" fill="#111">aus dem _site-Ordner</text>
+
+  <rect x="355" y="205" width="360" height="45" rx="6" fill="#fff2cc" stroke="#d6b656"/>
+  <text x="535" y="232" font-size="12" text-anchor="middle" fill="#111">Decap CMS Oberfläche  /admin/</text>
+
+  <rect x="355" y="265" width="170" height="45" rx="6" fill="#f8cecc" stroke="#b85450"/>
+  <text x="440" y="292" font-size="12" text-anchor="middle" fill="#111">Function /api/auth</text>
+
+  <rect x="545" y="265" width="170" height="45" rx="6" fill="#f8cecc" stroke="#b85450"/>
+  <text x="630" y="292" font-size="12" text-anchor="middle" fill="#111">Function /api/callback</text>
+
+  <rect x="355" y="325" width="360" height="40" rx="4" fill="#f5f5f5" stroke="#888"/>
+  <text x="535" y="350" font-size="11" font-style="italic" text-anchor="middle" fill="#333">Env: GITHUB_CLIENT_ID, GITHUB_CLIENT_SECRET</text>
+
+  <rect x="355" y="380" width="360" height="40" rx="4" fill="#ffffff" stroke="#d79b00"/>
+  <text x="535" y="405" font-size="12" text-anchor="middle" fill="#111">Automatischer Build (Eleventy) → _site</text>
+
+  <!-- GitHub -->
+  <rect x="850" y="130" width="210" height="95" rx="8" fill="#e1d5e7" stroke="#9673a6"/>
+  <text x="955" y="160" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">GitHub Repository</text>
+  <text x="955" y="182" font-size="11" text-anchor="middle" fill="#111">as69-github/tennis.tsvarnbach</text>
+  <text x="955" y="202" font-size="11" text-anchor="middle" fill="#111">Quellcode + Inhalte (main)</text>
+
+  <rect x="850" y="270" width="210" height="70" rx="8" fill="#e1d5e7" stroke="#9673a6"/>
+  <text x="955" y="300" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">GitHub OAuth</text>
+  <text x="955" y="320" font-size="12" text-anchor="middle" fill="#111">(Login-Server)</text>
+
+  <!-- Lokal -->
+  <rect x="330" y="600" width="410" height="70" rx="8" fill="#d5e8d4" stroke="#82b366"/>
+  <text x="535" y="628" font-size="13" font-weight="bold" text-anchor="middle" fill="#111">Lokale Entwicklung (Kiro / Node)</text>
+  <text x="535" y="650" font-size="12" text-anchor="middle" fill="#111">src/ bearbeiten · build.cmd / start.cmd</text>
+
+  <!-- edges -->
+  <line x1="210" y1="150" x2="352" y2="160" stroke="#444" marker-end="url(#arr)"/>
+  <text x="255" y="135" font-size="10" fill="#333">Seite abrufen (HTTPS)</text>
+
+  <path d="M125,600 L125,230 L352,228" fill="none" stroke="#444" marker-end="url(#arr)"/>
+  <text x="135" y="420" font-size="10" fill="#333">öffnet /admin/</text>
+
+  <line x1="525" y1="287" x2="848" y2="300" stroke="#444" stroke-dasharray="5,4" marker-end="url(#arr)"/>
+  <text x="740" y="283" font-size="10" fill="#333">leitet zum Login</text>
+
+  <line x1="848" y1="315" x2="717" y2="300" stroke="#444" stroke-dasharray="5,4" marker-end="url(#arr)"/>
+  <text x="720" y="335" font-size="10" fill="#333">Code → Token</text>
+
+  <line x1="715" y1="225" x2="848" y2="185" stroke="#444" marker-end="url(#arr)"/>
+  <text x="700" y="235" font-size="10" fill="#333">speichert Inhalte (Commit)</text>
+
+  <path d="M955,225 L955,255 L780,255 L780,400 L717,400" fill="none" stroke="#444" marker-end="url(#arr)"/>
+  <text x="800" y="248" font-size="10" fill="#333">Push löst Build aus</text>
+
+  <path d="M355,400 L300,400 L300,165 L353,165" fill="none" stroke="#444" marker-end="url(#arr)"/>
+  <text x="250" y="480" font-size="10" fill="#333">veröffentlicht _site</text>
+
+  <path d="M740,635 L960,635 L960,225" fill="none" stroke="#444" marker-end="url(#arr)"/>
+  <text x="770" y="628" font-size="10" fill="#333">git push (nach git pull)</text>
+</svg>
