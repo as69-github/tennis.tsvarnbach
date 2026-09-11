@@ -1,0 +1,57 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="OAuth-Login" id="oauth">
+    <mxGraphModel dx="1200" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1150" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="OAuth-Login der Content-Verwalter (Decap CMS über GitHub)" style="text;html=1;fontSize=18;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="230" y="20" width="700" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="hRed" value="Redakteur&#10;(Browser, /admin/)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="70" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hAuth" value="/api/auth&#10;(Pages Function)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="290" y="70" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hGh" value="GitHub OAuth&#10;(Login-Server)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="520" y="70" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hCb" value="/api/callback&#10;(Pages Function)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="750" y="70" width="150" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="hApi" value="GitHub API&#10;(Repo)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="980" y="70" width="150" height="50" as="geometry" />
+        </mxCell>
+
+        <mxCell id="lRed" style="endArrow=none;dashed=1;html=1;strokeColor=#82b366;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="135" y="120" as="sourcePoint" /><mxPoint x="135" y="880" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lAuth" style="endArrow=none;dashed=1;html=1;strokeColor=#b85450;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="365" y="120" as="sourcePoint" /><mxPoint x="365" y="880" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lGh" style="endArrow=none;dashed=1;html=1;strokeColor=#9673a6;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="595" y="120" as="sourcePoint" /><mxPoint x="595" y="880" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lCb" style="endArrow=none;dashed=1;html=1;strokeColor=#b85450;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="825" y="120" as="sourcePoint" /><mxPoint x="825" y="880" as="targetPoint" /></mxGeometry></mxCell>
+        <mxCell id="lApi" style="endArrow=none;dashed=1;html=1;strokeColor=#9673a6;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="1055" y="120" as="sourcePoint" /><mxPoint x="1055" y="880" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="s1" value="1. Klick auf &quot;Login with GitHub&quot; → Aufruf /api/auth" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="135" y="170" as="sourcePoint" /><mxPoint x="365" y="170" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="s2" value="2. HTTP 302 Redirect zu github.com/login/oauth/authorize&#10;(client_id, redirect_uri=/api/callback, scope=repo, state)" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="365" y="240" as="sourcePoint" /><mxPoint x="595" y="240" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="s3" value="3. Redakteur meldet sich an &amp; bestätigt Zugriff" style="endArrow=block;html=1;fontSize=11;dashed=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="135" y="320" as="sourcePoint" /><mxPoint x="595" y="320" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="s4" value="4. Redirect zurück zu /api/callback?code=..." style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="595" y="390" as="sourcePoint" /><mxPoint x="825" y="390" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="s5" value="5. POST code + client_id + client_secret&#10;an github.com/login/oauth/access_token" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="825" y="460" as="sourcePoint" /><mxPoint x="595" y="460" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="s6" value="6. Antwort: access_token" style="endArrow=block;html=1;fontSize=11;dashed=1;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="595" y="530" as="sourcePoint" /><mxPoint x="825" y="530" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="s7" value="7. HTML mit postMessage(&quot;authorization:github:success:{token}&quot;)&#10;an das CMS-Fenster zurück" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="825" y="610" as="sourcePoint" /><mxPoint x="135" y="610" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="s8" value="8. CMS nutzt das Token für alle weiteren Aufrufe:&#10;Inhalte lesen &amp; speichern (Commits) via GitHub API" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1"><mxGeometry relative="1" as="geometry"><mxPoint x="135" y="700" as="sourcePoint" /><mxPoint x="1055" y="700" as="targetPoint" /></mxGeometry></mxCell>
+
+        <mxCell id="note" value="Wichtig: Das GITHUB_CLIENT_SECRET verlässt nie den Server – es wird nur in der Pages Function /api/callback verwendet. Der Browser sieht nur das fertige Access-Token." style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;align=left;spacingLeft=8;" vertex="1" parent="1">
+          <mxGeometry x="135" y="760" width="920" height="60" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

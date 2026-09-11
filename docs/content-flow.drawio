@@ -1,0 +1,62 @@
+<mxfile host="app.diagrams.net" type="device">
+  <diagram name="Content-Flow" id="contentflow">
+    <mxGraphModel dx="1200" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="700" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="title" value="Wie Inhalte veröffentlicht werden – zwei Wege" style="text;html=1;fontSize=18;fontStyle=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="300" y="20" width="500" height="30" as="geometry" />
+        </mxCell>
+
+        <mxCell id="wayA" value="Weg A: Redakteur über das CMS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;verticalAlign=top;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="440" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" value="Redakteur öffnet /admin/ und bearbeitet&#10;Termine, Neuigkeiten, Fotos, Platzbuchung" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="90" y="120" width="380" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="a2" value="Decap CMS erstellt einen Commit im GitHub-Repo&#10;(über das OAuth-Token)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="90" y="185" width="380" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="a3" value="Bilder landen automatisch in src/uploads/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="90" y="250" width="380" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="aE1" style="endArrow=block;html=1;" edge="1" parent="1" source="a1" target="a2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="aE2" style="endArrow=block;html=1;" edge="1" parent="1" source="a2" target="a3"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="wayB" value="Weg B: Lokale Entwicklung mit Kiro" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;verticalAlign=top;spacingTop=6;" vertex="1" parent="1">
+          <mxGeometry x="600" y="80" width="440" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="b1" value="git pull (automatisch beim Sitzungsstart)&#10;holt CMS-Änderungen der Redakteure" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="630" y="120" width="380" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="b2" value="Dateien unter src/ bearbeiten (Layout, Seiten, CSS)&#10;lokal bauen mit build.cmd / start.cmd" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="630" y="185" width="380" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="b3" value="git commit + git push" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="630" y="250" width="380" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="bE1" style="endArrow=block;html=1;" edge="1" parent="1" source="b1" target="b2"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="bE2" style="endArrow=block;html=1;" edge="1" parent="1" source="b2" target="b3"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+        <mxCell id="repo" value="GitHub Repository (Branch main)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="380" y="400" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="build" value="Cloudflare Pages: automatischer Build&#10;npx @11ty/eleventy → _site" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;" vertex="1" parent="1">
+          <mxGeometry x="380" y="500" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="live" value="Live-Website&#10;https://tennis-tsvarnbach.pages.dev/" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d4e1f5;strokeColor=#6c8ebf;fontStyle=1;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="380" y="600" width="340" height="55" as="geometry" />
+        </mxCell>
+
+        <mxCell id="cE1" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1" source="a3" target="repo"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="280" y="360" /><mxPoint x="470" y="360" /></Array></mxGeometry></mxCell>
+        <mxCell id="cE2" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1" source="b3" target="repo"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="820" y="360" /><mxPoint x="630" y="360" /></Array></mxGeometry></mxCell>
+        <mxCell id="cE3" value="Push löst Build aus" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1" source="repo" target="build"><mxGeometry relative="1" as="geometry" /></mxCell>
+        <mxCell id="cE4" value="veröffentlicht" style="endArrow=block;html=1;fontSize=11;" edge="1" parent="1" source="build" target="live"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
