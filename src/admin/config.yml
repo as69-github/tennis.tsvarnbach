@@ -13,7 +13,19 @@ backend:
   base_url: https://tennis-tsvarnbach.pages.dev
   auth_endpoint: /api/auth
 
-# Ordner fuer hochgeladene Bilder
+# Bilder werden bei Cloudinary gespeichert (spart Speicher im GitHub-Repo).
+# cloud_name und api_key duerfen oeffentlich sein; das geheime api_secret
+# steht bewusst NICHT hier. Neue Uploads liefern eine Cloudinary-URL, die
+# direkt in den Inhaltsdateien gespeichert wird.
+media_library:
+  name: cloudinary
+  output_filename_only: false
+  config:
+    cloud_name: t6a5dsny
+    api_key: "264323271977977"
+
+# Fallback-Ordner fuer den lokalen Betrieb bzw. falls Cloudinary mal nicht
+# genutzt wird. Bereits vorhandene Bilder unter /uploads bleiben erhalten.
 media_folder: "src/uploads"
 public_folder: "/uploads"
 
