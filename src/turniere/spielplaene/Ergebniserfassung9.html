@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ergebniserfassung – Spass-Einzelturnier 2026 (9 Spieler) – TSV Arnbach</title>
+    <style>
+        :root {
+            --blue-dark: #0d1b3e;
+            --blue-mid: #1a3a6b;
+            --blue-light: #e3edf9;
+            --blue-accent: #2979FF;
+            --green: #27ae60;
+            --amber: #f39c12;
+            --red: #e74c3c;
+            --bg-card: #ffffff;
+            --text: #333;
+            --text-light: #777;
+            --border: #dce4ee;
+            --shadow: 0 3px 12px rgba(0,0,0,0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(145deg, #0a1628 0%, #163a6e 50%, #1a4a8a 100%);
+            min-height: 100vh;
+            padding: 24px 16px;
+            color: var(--text);
+        }
+
+        .container { max-width: 1050px; margin: 0 auto; }
+
+        header {
+            text-align: center; color: #fff;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.25);
+        }
+        header h1 { font-size: 1.9em; margin-bottom: 2px; }
+        header h2 { font-weight: 400; font-size: 1.1em; opacity: .9; }
+
+        .info-chips {
+            display: flex; justify-content: center; gap: 12px;
+            flex-wrap: wrap; margin-top: 14px;
+        }
+        .chip {
+            background: rgba(255,255,255,0.15);
+            padding: 5px 14px; border-radius: 18px;
+            font-size: .92em; color: #fff;
+        }
+
+        .toolbar {
+            display: flex; justify-content: center; gap: 10px;
+            flex-wrap: wrap; margin-top: 16px;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 10px; margin-bottom: 20px;
+            box-shadow: var(--shadow); overflow: hidden;
+        }
+        .card-title {
+            background: var(--blue-mid); color: #fff;
+            padding: 11px 18px; font-size: 1.05em; font-weight: 600;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .card-title .badge {
+            font-weight: 400; font-size: .85em;
+            background: rgba(255,255,255,0.2);
+            padding: 2px 11px; border-radius: 10px;
+        }
+
+        .matches-grid { display: grid; grid-template-columns: repeat(3, 1fr); }
+        .match-cell {
+            padding: 14px 10px; text-align: center;
+            border-right: 1px solid var(--border);
+        }
+        .match-cell:last-child { border-right: none; }
+        .court-label {
+            font-size: .75em; color: var(--text-light);
+            text-transform: uppercase; letter-spacing: .8px;
+            margin-bottom: 8px;
+        }
+        .game-no { font-size: .72em; color: var(--blue-accent); font-weight: 700; }
+
+        .team-line {
+            display: flex; align-items: center;
+            justify-content: center; gap: 5px;
+            margin: 4px 0; font-size: .97em;
+        }
+        .pname {
+            background: var(--blue-light);
+            padding: 3px 9px; border-radius: 5px;
+            font-weight: 500; white-space: nowrap;
+        }
+        .pname.winner { background: #d4efdf; color: #1e7d47; font-weight: 700; }
+        .vs-label { color: #aaa; font-size: .8em; font-weight: 600; margin: 3px 0; }
+
+        .score-row {
+            display: flex; align-items: center;
+            justify-content: center; gap: 6px; margin-top: 10px;
+        }
+        .score-input {
+            width: 40px; height: 34px; text-align: center;
+            border: 2px solid #ddd; border-radius: 5px;
+            font-size: 1.1em; font-weight: 700;
+            background: #fafafa; font-family: inherit;
+        }
+        .score-input:focus { border-color: var(--blue-accent); outline: none; background: #fff; }
+        .score-sep { font-weight: 700; color: #99aec8; }
+        .mp-hint { margin-top: 6px; font-size: .75em; color: var(--text-light); min-height: 14px; }
+
+        .free-bar {
+            background: #f5f7fa; padding: 8px 18px;
+            border-top: 1px solid var(--border);
+            text-align: center; font-size: .85em; color: var(--text-light);
+            font-style: italic;
+        }
+        .lunch {
+            text-align: center; background: #f9e79f; color: #6d5500;
+            border-radius: 10px; padding: 12px; margin-bottom: 20px;
+            font-weight: 700; box-shadow: var(--shadow);
+        }
+
+        .rank-table { width: 100%; border-collapse: collapse; }
+        .rank-table th {
+            background: var(--blue-mid); color: #fff;
+            padding: 9px 10px; text-align: left; font-size: .85em;
+        }
+        .rank-table th.num { text-align: center; }
+        .rank-table td {
+            padding: 8px 10px; border-bottom: 1px solid #f0f0f0; font-size: .92em;
+        }
+        .rank-table td.num { text-align: center; }
+        .rank-table td.name { font-weight: 600; }
+        .rank-table tr:hover { background: #f8f8f8; }
+        .rank-table .rank-1 td { background: #fdf3d0; }
+        .rank-table .rank-1 td.num:first-child::after { content: " 🏆"; }
+        .rank-table .mp { font-weight: 700; color: var(--blue-dark); }
+
+        .btn {
+            background: var(--blue-accent); color: #fff;
+            border: none; padding: 8px 18px; border-radius: 7px;
+            cursor: pointer; font-size: .92em; font-family: inherit;
+        }
+        .btn:hover { background: #1565C0; }
+        .btn-sm { padding: 5px 12px; font-size: .85em; }
+        .btn-outline {
+            background: transparent; border: 2px solid rgba(255,255,255,0.6);
+            color: #fff; padding: 7px 16px; border-radius: 7px;
+            cursor: pointer; font-size: .88em; font-family: inherit;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.12); }
+        .btn-danger { background: var(--red); }
+        .btn-danger:hover { background: #c0392b; }
+
+        .save-status {
+            text-align: center; color: rgba(255,255,255,0.85);
+            font-size: .82em; margin-top: 10px; min-height: 18px;
+        }
+
+        @media print {
+            body { background: #fff; padding: 8px; }
+            header { color: #222; text-shadow: none; }
+            .card { box-shadow: none; border: 1px solid #ccc; break-inside: avoid; }
+            .card-title { background: #2a4a7a; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .rank-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .no-print { display: none !important; }
+            .score-input { border: 1px solid #aaa; }
+        }
+        @media (max-width: 700px) {
+            .matches-grid { grid-template-columns: 1fr; }
+            .match-cell { border-right: none; border-bottom: 1px solid var(--border); }
+            header h1 { font-size: 1.4em; }
+        }
+        .footer-note {
+            text-align: center; color: rgba(255,255,255,0.55);
+            font-size: .8em; margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <h1>🎾 TSV Arnbach – Spass-Einzelturnier 2026</h1>
+        <h2>Ergebniserfassung – 9 Spieler</h2>
+        <div class="info-chips">
+            <span class="chip">9 Teilnehmer</span>
+            <span class="chip">18 Spiele · 6 Runden</span>
+            <span class="chip">jeder 4 Spiele</span>
+            <span class="chip">Start 10:30 Uhr</span>
+        </div>
+        <div class="toolbar no-print">
+            <button class="btn-outline" onclick="window.print()">Drucken / PDF</button>
+            <button class="btn-outline" onclick="resetAll()">Alle Ergebnisse löschen</button>
+        </div>
+        <div class="save-status" id="save-status"></div>
+    </header>
+
+    <div id="rounds-container"></div>
+
+    <div class="card">
+        <div class="card-title">
+            🏆 Gesamttabelle
+            <span class="badge">automatisch berechnet</span>
+        </div>
+        <table class="rank-table">
+            <thead>
+                <tr>
+                    <th class="num">Platz</th>
+                    <th>Spieler</th>
+                    <th class="num">Sp.</th>
+                    <th class="num">S</th>
+                    <th class="num">U</th>
+                    <th class="num">N</th>
+                    <th class="num">Sp.+</th>
+                    <th class="num">Sp.&minus;</th>
+                    <th class="num">Diff.</th>
+                    <th class="num">MP</th>
+                </tr>
+            </thead>
+            <tbody id="rank-body"></tbody>
+        </table>
+        <div class="free-bar">
+            Wertung: Sieg = 2 MP, Unentschieden = 1 MP, Niederlage = 0 MP.
+            Reihenfolge: Matchpunkte → gewonnene Spiele → Spiel-Differenz.
+        </div>
+    </div>
+
+    <p class="footer-note">TSV Arnbach Tennis · Spass-Einzelturnier 2026 · Ergebnisse werden automatisch im Browser gespeichert</p>
+</div>
+
+<script>
+// =====================================================
+// TURNIERDATEN – 9 Spieler, 18 Spiele, 6 Runden
+// =====================================================
+const STORAGE_KEY = "tsv_arnbach_einzel9_2026";
+
+const PLAYERS = ["Sandra","Robert","Timo","Christian","Raiko","Bettina","Philipp 🧒","Steffi","Dieter"];
+
+// Runden mit Spielen: [Spielnummer, SpielerA, SpielerB, Rangabstand]
+const ROUNDS = [
+    { title: "Runde 1", time: "10:30 – 11:00 Uhr", free: "Timo, Christian, Bettina", games: [
+        [1, "Sandra", "Robert", 1],
+        [2, "Raiko", "Dieter", 4],
+        [3, "Philipp 🧒", "Steffi", 1]
+    ]},
+    { title: "Runde 2", time: "11:15 – 11:45 Uhr", free: "Robert, Raiko, Philipp", games: [
+        [4, "Bettina", "Dieter", 3],
+        [5, "Christian", "Steffi", 4],
+        [6, "Sandra", "Timo", 2]
+    ]},
+    { title: "Runde 3", time: "12:00 – 12:30 Uhr", free: "Sandra, Steffi, Dieter", games: [
+        [7, "Robert", "Bettina", 4],
+        [8, "Christian", "Raiko", 1],
+        [9, "Timo", "Philipp 🧒", 4]
+    ]},
+    { title: "Runde 4", time: "13:30 – 14:00 Uhr", free: "Raiko, Steffi, Dieter", lunchBefore: true, games: [
+        [10, "Sandra", "Christian", 3],
+        [11, "Robert", "Timo", 1],
+        [12, "Bettina", "Philipp 🧒", 1]
+    ]},
+    { title: "Runde 5", time: "14:15 – 14:45 Uhr", free: "Sandra, Bettina, Philipp", games: [
+        [13, "Timo", "Raiko", 2],
+        [14, "Steffi", "Dieter", 1],
+        [15, "Robert", "Christian", 2]
+    ]},
+    { title: "Runde 6", time: "15:00 – 15:30 Uhr", free: "Robert, Timo, Christian", games: [
+        [16, "Sandra", "Raiko", 4],
+        [17, "Philipp 🧒", "Dieter", 2],
+        [18, "Bettina", "Steffi", 2]
+    ]}
+];
+
+// =====================================================
+// State + Persistenz
+// =====================================================
+let results = {}; // { gameNo: { a: number|null, b: number|null } }
+
+function loadResults() {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) results = JSON.parse(raw);
+    } catch (e) { results = {}; }
+}
+
+function saveResults() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(results));
+        flashStatus("✔ Ergebnisse gespeichert " + new Date().toLocaleTimeString("de-DE"));
+    } catch (e) {
+        flashStatus("⚠ Speichern nicht möglich (Browser-Einstellungen prüfen)");
+    }
+}
+
+let statusTimer = null;
+function flashStatus(msg) {
+    const el = document.getElementById("save-status");
+    el.textContent = msg;
+    if (statusTimer) clearTimeout(statusTimer);
+    statusTimer = setTimeout(() => { el.textContent = ""; }, 3000);
+}
+
+function resetAll() {
+    if (!confirm("Wirklich ALLE eingetragenen Ergebnisse löschen?")) return;
+    results = {};
+    localStorage.removeItem(STORAGE_KEY);
+    renderRounds();
+    updateRanking();
+    flashStatus("Alle Ergebnisse wurden zurückgesetzt.");
+}
+
+// =====================================================
+// Matchpunkte-Logik
+// =====================================================
+function matchPoints(a, b) {
+    if (a === null || b === null || isNaN(a) || isNaN(b)) return [null, null];
+    if (a > b) return [2, 0];
+    if (b > a) return [0, 2];
+    return [1, 1];
+}
+
+// =====================================================
+// Rendering
+// =====================================================
+function renderRounds() {
+    const container = document.getElementById("rounds-container");
+    let html = "";
+
+    ROUNDS.forEach(round => {
+        if (round.lunchBefore) {
+            html += `<div class="lunch">★ MITTAGSPAUSE: 12:30 – 13:30 Uhr (1 Stunde gemeinsames Mittagessen) ★</div>`;
+        }
+        html += `<div class="card">`;
+        html += `<div class="card-title">${round.title} <span class="badge">${round.time}</span></div>`;
+        html += `<div class="matches-grid">`;
+
+        round.games.forEach((g, idx) => {
+            const [no, pa, pb, dist] = g;
+            const r = results[no] || { a: null, b: null };
+            const va = (r.a === null || r.a === undefined) ? "" : r.a;
+            const vb = (r.b === null || r.b === undefined) ? "" : r.b;
+            const [mpa, mpb] = matchPoints(r.a ?? null, r.b ?? null);
+            const winA = mpa === 2, winB = mpb === 2;
+            let mpHint = "";
+            if (mpa !== null) {
+                mpHint = (mpa === mpb) ? "Unentschieden · je 1 MP" :
+                    (winA ? `${pa}: 2 MP` : `${pb}: 2 MP`);
+            }
+            html += `<div class="match-cell">`;
+            html += `<div class="court-label">Platz ${idx + 1} · <span class="game-no">Spiel ${no}</span></div>`;
+            html += `<div class="team-line"><span class="pname ${winA ? "winner" : ""}">${pa}</span></div>`;
+            html += `<div class="vs-label">vs · Rangabstand ${dist}</div>`;
+            html += `<div class="team-line"><span class="pname ${winB ? "winner" : ""}">${pb}</span></div>`;
+            html += `<div class="score-row">
+                        <input type="number" class="score-input" min="0" max="99"
+                               value="${va}" data-game="${no}" data-side="a"
+                               oninput="onScoreInput(${no})">
+                        <span class="score-sep">:</span>
+                        <input type="number" class="score-input" min="0" max="99"
+                               value="${vb}" data-game="${no}" data-side="b"
+                               oninput="onScoreInput(${no})">
+                     </div>`;
+            html += `<div class="mp-hint" id="mp-${no}">${mpHint}</div>`;
+            html += `</div>`;
+        });
+
+        html += `</div>`;
+        html += `<div class="free-bar">Frei: ${round.free}</div>`;
+        html += `</div>`;
+    });
+
+    container.innerHTML = html;
+}
+
+function onScoreInput(no) {
+    const inA = document.querySelector(`input[data-game="${no}"][data-side="a"]`);
+    const inB = document.querySelector(`input[data-game="${no}"][data-side="b"]`);
+    const a = inA.value === "" ? null : parseInt(inA.value);
+    const b = inB.value === "" ? null : parseInt(inB.value);
+    results[no] = { a, b };
+    saveResults();
+
+    // MP-Hinweis + Gewinner-Hervorhebung aktualisieren
+    const [mpa, mpb] = matchPoints(a, b);
+    const hint = document.getElementById("mp-" + no);
+    const cell = inA.closest(".match-cell");
+    const names = cell.querySelectorAll(".pname");
+    names.forEach(n => n.classList.remove("winner"));
+    if (mpa !== null) {
+        if (mpa === mpb) hint.textContent = "Unentschieden · je 1 MP";
+        else if (mpa === 2) { hint.textContent = names[0].textContent + ": 2 MP"; names[0].classList.add("winner"); }
+        else { hint.textContent = names[1].textContent + ": 2 MP"; names[1].classList.add("winner"); }
+    } else {
+        hint.textContent = "";
+    }
+    updateRanking();
+}
+
+// =====================================================
+// Tabelle berechnen
+// =====================================================
+function updateRanking() {
+    const stats = {};
+    PLAYERS.forEach(p => {
+        stats[p] = { games: 0, wins: 0, draws: 0, losses: 0, gFor: 0, gAgainst: 0, mp: 0 };
+    });
+
+    ROUNDS.forEach(round => {
+        round.games.forEach(g => {
+            const [no, pa, pb] = g;
+            const r = results[no];
+            if (!r) return;
+            const a = r.a, b = r.b;
+            if (a === null || b === null || a === undefined || b === undefined || isNaN(a) || isNaN(b)) return;
+
+            stats[pa].games++; stats[pb].games++;
+            stats[pa].gFor += a; stats[pa].gAgainst += b;
+            stats[pb].gFor += b; stats[pb].gAgainst += a;
+
+            if (a > b) { stats[pa].wins++; stats[pb].losses++; stats[pa].mp += 2; }
+            else if (b > a) { stats[pb].wins++; stats[pa].losses++; stats[pb].mp += 2; }
+            else { stats[pa].draws++; stats[pb].draws++; stats[pa].mp += 1; stats[pb].mp += 1; }
+        });
+    });
+
+    const rows = PLAYERS.map(p => ({
+        name: p, ...stats[p], diff: stats[p].gFor - stats[p].gAgainst
+    })).sort((x, y) => {
+        if (y.mp !== x.mp) return y.mp - x.mp;
+        if (y.wins !== x.wins) return y.wins - x.wins;
+        if (y.diff !== x.diff) return y.diff - x.diff;
+        return y.gFor - x.gFor;
+    });
+
+    const anyPlayed = rows.some(r => r.games > 0);
+    const tbody = document.getElementById("rank-body");
+    tbody.innerHTML = rows.map((r, idx) => {
+        const cls = (idx === 0 && anyPlayed && r.mp > 0) ? ' class="rank-1"' : '';
+        const d = r.diff > 0 ? "+" + r.diff : r.diff;
+        return `<tr${cls}>
+            <td class="num">${idx + 1}</td>
+            <td class="name">${r.name}</td>
+            <td class="num">${r.games}</td>
+            <td class="num">${r.wins}</td>
+            <td class="num">${r.draws}</td>
+            <td class="num">${r.losses}</td>
+            <td class="num">${r.gFor}</td>
+            <td class="num">${r.gAgainst}</td>
+            <td class="num">${d}</td>
+            <td class="num mp">${r.mp}</td>
+        </tr>`;
+    }).join("");
+}
+
+// =====================================================
+// Init
+// =====================================================
+loadResults();
+renderRounds();
+updateRanking();
+</script>
+
+</body>
+</html>
